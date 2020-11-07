@@ -1,0 +1,46 @@
+// set as java application
+apply plugin: 'application'
+
+//define main class
+mainClassName = 'Concentration'
+
+task Gui(type: JavaExec) {
+  group 'gui'
+  description 'Displays a GUI for a game of concentration'
+
+  classpath = sourceSets.main.runtimeClasspath
+
+  main = 'Assignment3Starter.ClientGui'
+  standardInput = System.in
+}
+
+task Maker(type: JavaExec) {
+  group 'maker'
+  description 'Takes an image and makes the rebus library'
+
+  classpath = sourceSets.main.runtimeClasspath
+
+  main = 'Assignment3Starter.GridMaker'
+  standardInput = System.in
+}
+
+task runClient(type: JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+  description = "Run Client"
+  main = 'Assignment3Starter.SockClient'
+  // default args
+  args 'localhost' // host
+  args '8888' // port
+  args '0' // int value to write
+  args '2' // int value to write
+}
+
+ task runServer(type: JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+  description = "Run Server"
+  main = 'Assignment3Starter.SockServer'
+  // default args
+  args '8888' // port
+  args '10000' // sleep delay
+}
+ 
